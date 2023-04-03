@@ -1,0 +1,91 @@
+#include<stdio.h>
+#include <math.h>
+
+const int k = 10; // Declareing a constant variable k with value 10
+int A[k][k], i, j, n, C[k]; // Declareing variables i, j, n, and A and C as arrays of size k
+
+int main()
+{
+	// Printing author, FNum, and group
+	printf("Author: Martin Hadzhiseid  ");
+	printf("FNum: 371222001 ; Group: 90A \n");
+
+	printf("\n");
+
+	// Printing problem statement
+	printf("Condition: Form a one-dimentional array C whose elements are the elements of the array A whose squares are greater than 50, and sort the resulting array by size\n");
+
+	printf("\n");
+
+	//Entering input data
+	printf("Enter number of rows and columns in the array: n = ");
+	scanf_s("%d", &n);
+
+	// Prompting user to enter elements of the array A
+	printf("Enter elements of the array: \n");
+
+	// Using nested loops to iterate through each element in the array A
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < n; j++)
+		{
+			do // Using do-while loop to ensure that each input is within the range of [-10, 10]
+			{
+				printf("Enter number in A[%d][%d] = ", i, j);
+				scanf_s("%d", &A[i][j]);
+			} while (!((A[i][j] > -10) && (A[i][j] < 10)));
+		}
+	}
+
+	// Outputting input data
+	printf("\n");
+	printf("Your array: \n");
+
+	// Using nested loops to iterate through each element in the array A and print it out
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < n; j++)
+		{
+			printf("%d ", A[i][j]);
+		}
+		printf("\n");
+	}
+
+	// Createing a variable count to keep track of the number of elements in the new array C
+	int count = 0;
+
+	// Using nested loops to iterate through each element in the array A
+	for (i = 0; i < n; i++)
+	{
+		for (j = 0; j < n; j++)
+		{
+			if (pow(A[i][j], 2) > 50) // Checking if the square of the current element is greater than 50
+			{
+				C[count] = A[i][j]; // If it is, adding the current element to the new array C
+				count++; // Incrementing the count variable
+			}
+		}
+	}
+
+	// Sorting the new array C using a bubble sort
+	for (i = 0; i < count - 1; i++)
+	{
+		for (j = 0; j < count - i - 1; j++)
+		{
+			if (C[j] > C[j + 1]) // If the current element is greater than the next element
+			{
+				// Swap the two elements
+				int temp = C[j];
+				C[j] = C[j + 1];
+				C[j + 1] = temp;
+			}
+		}
+	}
+
+	// Printing out the new array C
+	printf("New array:\n");
+	for (i = 0; i < count; i++)
+	{
+		printf("%d ", C[i]);
+	}
+}
